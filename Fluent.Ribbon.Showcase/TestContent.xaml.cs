@@ -22,6 +22,7 @@ using Fluent;
 using Fluent.Extensions;
 using Fluent.Internal;
 using Fluent.Localization;
+using FluentTest.AddLogicalChildRepro;
 using FluentTest.Adorners;
 using FluentTest.Commanding;
 using FluentTest.Helpers;
@@ -46,6 +47,8 @@ public partial class TestContent
         //RibbonLocalization.Current.Localization.Culture = new CultureInfo("ru-RU");
 
         this.HookEvents();
+
+        ApplicationThemeManager.ApplicationTheme = ApplicationTheme.Light;
 
         this.viewModel = new MainViewModel();
         this.WindowTitle = GetVersionText(this.GetType());
@@ -372,6 +375,7 @@ public partial class TestContent
 
     private void OnFormatPainterClick(object sender, RoutedEventArgs e)
     {
+        this.ChangeTheme();
         MessageBox.Show("FP");
     }
 
@@ -615,6 +619,12 @@ public partial class TestContent
         ShowMahAppsMetroNotAvailableMessageBox();
         await Task.Yield();
 #endif
+    }
+
+    private void ChangeTheme()
+    {
+        ApplicationThemeManager.ApplicationTheme = ApplicationThemeManager.ApplicationTheme == ApplicationTheme.Light ? ApplicationTheme.Dark : ApplicationTheme.Light;
+        ThemesManager.NotifyApplicationThemeChanged(ApplicationThemeManager.ApplicationTheme);
     }
 
     private void Hyperlink_OnClick(object sender, RoutedEventArgs e)

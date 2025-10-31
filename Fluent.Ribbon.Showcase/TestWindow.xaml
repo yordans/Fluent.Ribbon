@@ -5,6 +5,8 @@
                      xmlns:FluentTest="clr-namespace:FluentTest"
                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:addLogicalChildRepro="clr-namespace:FluentTest.AddLogicalChildRepro"
+                     addLogicalChildRepro:ThemesManager.IsApplicationThemesEnabled="True"
                      x:Name="window"
                      Title="{Binding WindowTitle, ElementName=TestContent}"
                      Width="1024"
